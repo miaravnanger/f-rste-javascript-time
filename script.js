@@ -1,181 +1,114 @@
-//Lesson 4: functions
+//Lesson 5: Javascript Methods(strings arrays, numbers)
 
-//section 1: function declarations and hoisting
+// with a spesific type of data, like strings, numbers, or arrays. It lets you do something with that data-like change it, check it, copy og access part of it.
 
-//this function prints a simple greeting to the concole
-function sayHello() {
-  console.log("hello");
+//1: string methods
 
-  //we call the function by using its name followed by (sayHello);
+const text = "     Hello, JavaScript World World!     ";
 
-  sayHello();
-}
-//functions get read first, even tho you havent declared it above(this is called hoisting)
+console.log(text.trim()); //removed whitespace from both ends of the string. Does not alter the original, can be stored in a new variable
 
-//section 2 Arrow functions (introdused in Es6 great for short inline functions)
+const trimmedText = text.trim();
 
-const arrowFunction = () => {
-  console.log("Hello from the arrow function");
-};
-arrowFunction();
+console.log(trimmedText);
+console.log(text.toUpperCase()); // converts the string to uppercase
+console.log(text.toLowerCase()); //converts to lowercase
+console.log(text.indexOf("JavaScript")); //shows where the text starts in the string(The starting index of the given string)
 
-//section 3 return statements and scope
+console.log(text.slice(5, 10)); //shows the text between(from 5 to/not inclusive 10)these two points in the string(included these points)
+const slicedText = text.slice(5, 10);
+console.log(slicedText);
 
-function logMessage() {
-  console.log("This function logs a message without returning a value");
-}
-logMessage();
+console.log(text.replace("World", "Universe")); //replaces the text in the first "" and replace it with the next "". Only the first occurence of the text.
+console.log(text.replaceAll("World", "Universe")); //replaces all the instances of the text.
 
-function returnsValue() {
-  const myMessage = "This is my message";
-  console.log(myMessage);
-  return myMessage;
-  //Any vode below the first return is unreachable. As soon as we return, we exit the function
-  return myMessage;
-  const myVar = 45;
-  return myVar;
-}
-console.log(returnsValue());
+console.log(text.charCodeAt(5)); //returns the Unicode value of the character of index 3
+console.log(text.trim().length); //returns the length of the string
 
-const returnedMessage = returnsValue();
+console.log(text.trim().split(" ")); //converts a string into an array, splitting into new elements on the given character
+console.log(text.repeat(3)); //repeats the string 3 times
 
-console.log(returnedMessage);
+//section 1.2
+let numericString = "123.45xyz";
 
-//section 4 Functions with parameters
+console.log(Number(numericString)); //converts entire string to a number; returns NaN if any part is invalid
+console.log(parseInt(numericString)); //parses an integer(no decimals) until an invalid character(such as text)
+console.log(parseFloat(numericString)); //parses an integer as a float(with decimals) until an invalid character(such as text)
 
-//ex 1 hard coding
+//Array Methods
 
-function add() {
-  return 3 + 4;
-}
-console.log(add());
+const colors = ["Red", "Green", "Blue"];
+console.log(colors.indexOf("Green"));
+console.log(colors.length);
+colors.push("Yellow");
+console.log(colors); // push adds to the end of an array
 
-//ex 2 soft coding
+const lastColor = colors.pop();
+console.log(lastColor); // removes the last element frmo the array, can be stored in a new variable
 
-function minus(num1, num2) {
-  return num1 - num2;
-}
-console.log(minus(20, 10));
-console.log(minus(150, 43));
-console.log(minus(2345, 678));
+const firstColor = colors.shift();
+console.log(firstColor); //shift removes an element from the beginning of the array
 
-//function to order t-shirts
-let blueShirtOrders = 0;
-let redShirtOrders = 0;
+colors.unshift("purple"); //unshift places an element at the beginning of the array
 
-function orderShirt(color) {
-  if (color === "blue") {
-    blueShirtOrders++;
-  } else if (color === "red") {
-    redShirtOrders++;
-  }
-}
-orderShirt("blue");
-orderShirt("red");
-orderShirt("red");
-console.log(blueShirtOrders);
-console.log(redShirtOrders);
+console.log(colors);
 
-// A greeter function that uses perameters and template literals
-//you dont need to put "return {" when you use an arrow function. Just in a one liner, not if you add more variables etc
-//
-const greeter = (name, time) => {
-  return `Good ${time} ${name} to my website`;
-};
+console.log(colors.join("-")); //turns an array into a string, adds the text inside the "" between each element.
 
-console.log(greeter("Joe", "morning"));
+console.log(colors.includes("Green")); //loops over the array and checks each element to see if it matches the text in the brackets
 
-console.log(greeter("Anders", "eventing"));
+console.log(colors);
 
-console.log(greeter("Mia", "afternoon"));
+//const newColors = colors.splice(1, 2, "Orange", "Pink");
+//splice returns the deleted elements in the array, alters the original
 
-//section 5 implicit return in arrow functions
-//arroe function with an implicit return (no curly brackets or return statemente needed)
+//console.log(newColors); //find index 1, delete that 1(if 2, the nexrt one as well) and replace with Orange and pink
 
-const adder = (num1, num2) => num1 + num2;
-console.log(adder(5, 10));
+const newColors2 = colors.toSpliced(1, 2, "Orange", "Pink");
 
-//section 6 calculator function using switch statements
+//toSliced returns the array with the chnges and doesnt altter the originals
+console.log(newColors2);
+console.log(colors);
 
-function calculator(operator, num1, num2) {
-  switch (operator) {
-    case "+":
-      return num1 + num2;
-    case "-":
-      return num1 - num2;
-    case "*":
-      return num1 * num2;
-    case "/":
-      return num1 / num2;
-    default:
-      return "Invalid operator";
-  }
-}
-console.log(calculator("+", 5, 10));
-console.log(calculator("-", 100, 20));
-console.log(calculator("*", 20, 20));
-console.log(calculator("/", 100, 2));
-console.log(calculator("yes", 100, 2));
+let unsortedArray = [3, 1, 4, 1, 5, 9];
+unsortedArray.sort(); //sorts the original array
+console.log(unsortedArray);
 
-//section 7 updating a Global variable via a Function
+let sortedArray = unsortedArray.toSorted(); //returns a copy of the original, sorted. does not affect the original array.
+console.log(sortedArray);
+console.log(sortedArray[0]);
+console.log(sortedArray.at(0));
+console.log(sortedArray.at(-2));
 
-let hp = 100;
+console.log(sortedArray.reverse()); //alters the original
+const reversedArray = sortedArray.toReversed(); //makes a copy of the original
+console.log(reversedArray);
 
-const maxHp = 200;
-//lets say we're making a game and adjusting the players health
-//arrow functions must be const
+const myNum = 3.34573459;
+console.log(myNum.toFixed(2)); //returns a string representing myNumber rounded to 2 decimal
+console.log(myNum.toString()); //converts myNum into a string
+console.log(myNum.toExponential()); //returns a string with myNum in exponential notation
 
-const updateHp = (gainLose, amount) => {
-  if (gainLose === "gain") {
-    hp += amount;
-    if (hp > maxHp) {
-      hp = maxHp;
-    }
-  } else if (gainLose === "lose") {
-    hp -= amount;
-  }
+//section 4 chaining methods together
 
-  if (hp <= 0) {
-    console.log("you died!");
-    hp = 100;
-  }
-};
+//Example 1: Chaining string methods
 
-updateHp("gain", 10);
-console.log(hp);
-updateHp("gain", 50);
-console.log(hp);
-updateHp("lose", 200);
-console.log(hp);
+const rawString = "  JavaScript is fun!  ";
 
-//updateHp("gain", 10);
-//updateHp("gain", 50);
-//pdateHp("lose", 100);
-//console.log(hp)
+const processedString = rawString
+  .trim()
+  .replace("fun", "awesome")
+  .toUpperCase();
 
-//the health needs to go up or down. I decide how much by..
+console.log(processedString);
 
-//the hp variable will move up IF we say up, and down IF we say down.
+//ex 2 chaining array methods
 
-//section 8 using template literals and ternary operator in a function
+const words = ["Hello", "World"];
+const messageFromArray = words.join(" ").toLocaleUpperCase();
 
-const fruits = ["banana", "Apple", "Pear", "Kiwi"];
-let included;
-//make a function which checks if an array includes n item. Then console logs if it is or isnt included
-const checkItem = (fruit) => {
+console.log(messageFromArray);
 
-  // if (fruits.includes(fruit)) {
-  //   included = "is";
-  // } else {
-  //   included = "isn't";
-  // }
-
-  return `${fruit} ${fruits.includes(fruit) ? "is" : "isn't" } included in the array`;
-};
-
-
-console.log(checkItem("Apple"));
-console.log(checkItem("Cherry"));
-//checkItem("Cherry")
-//console.log("Apple is included in the array")
-//console.log("Cherry is not included in the array");
+//ex 3
+const chainedNumber = myNum.toFixed(2).toString().repeat(2);
+console.log(chainedNumber);
