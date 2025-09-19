@@ -1,114 +1,165 @@
-//Lesson 5: Javascript Methods(strings arrays, numbers)
+const shoppingList = ["milk", "bread", "cheese"];
+const gamesList = [
+  "mario kart",
+  "hollow knight",
+  "hello kitty",
+  "island adventure",
+  "remnant 2",
+  "starcarft broodvar",
+  "WoW",
+];
 
-// with a spesific type of data, like strings, numbers, or arrays. It lets you do something with that data-like change it, check it, copy og access part of it.
+const checkItem = (item, list) =>
+  `${item} is ${list.includes(item) ? "" : "not"} included in the list`;
+console.log(checkItem("milk", shoppingList));
+console.log(checkItem("catfood", shoppingList));
+console.log(checkItem("remnant 2", gamesList));
+console.log(checkItem("Gears of War", gamesList));
 
-//1: string methods
+//   let isIsNot;
+//   if (included) {
+//     isIsNot = "is"
+//   } else {
+//     isIsNot = "is not ";
+//   }
+// }
+// return item + " " + isIsNot + "is included in the list";
+// checkItem("milk"))
 
-const text = "     Hello, JavaScript World World!     ";
+//2 convert a sentence into kebab case (function, methods)
 
-console.log(text.trim()); //removed whitespace from both ends of the string. Does not alter the original, can be stored in a new variable
+function toKebabCase(string) {
+  // return string.trim().split(" ").join("-"); //turns it into an array with plit, then turns it into a string again with - between earch word
+  // return string.trim().replaceAll(" ", "-");
+}
+console.log(toKebabCase("    Hello From The Function    "));
 
-const trimmedText = text.trim();
+// 3, check if a word is a palindrome(same backwards) (function, methods)
 
-console.log(trimmedText);
-console.log(text.toUpperCase()); // converts the string to uppercase
-console.log(text.toLowerCase()); //converts to lowercase
-console.log(text.indexOf("JavaScript")); //shows where the text starts in the string(The starting index of the given string)
+function isPalindrome(word) {
+  const lcWord = word.toLowerCase(); //first make it lowercase
+  //
+  //then, is the word the same as the word (each letters made to an array) reversed? (each letter gets reversed still as array) add join to make the letters back into a string.
 
-console.log(text.slice(5, 10)); //shows the text between(from 5 to/not inclusive 10)these two points in the string(included these points)
-const slicedText = text.slice(5, 10);
-console.log(slicedText);
+  if (lcWord === lcWord.split("").toReversed().join("")) {
+    return `${word} is a palindrome`;
+  } else {
+    return `${word} is not a palindrome`;
+  }
 
-console.log(text.replace("World", "Universe")); //replaces the text in the first "" and replace it with the next "". Only the first occurence of the text.
-console.log(text.replaceAll("World", "Universe")); //replaces all the instances of the text.
+  //.toLowerCase (because the first letter in the word is with a capital letter)
+  //.split("") if its empty it splits each character into an element in an array
+  //.toReversed reverses the order of the array
+  //.join(" ") joins the elements (letters) in the array back into a string
+}
+console.log(isPalindrome("Racecar")); // RaceCar is palindrome
+console.log(isPalindrome("Banana")); //banana is not palindrome
 
-console.log(text.charCodeAt(5)); //returns the Unicode value of the character of index 3
-console.log(text.trim().length); //returns the length of the string
+//section 4 shorten a string and add "..." at the end (functions, methods)
+function shorten(text, maxLength) {
+  if (text.length <= maxLength) {
+    return text;
+  } else {
+    return text.slice(0, maxLength) + "...";
+  }
+}
 
-console.log(text.trim().split(" ")); //converts a string into an array, splitting into new elements on the given character
-console.log(text.repeat(3)); //repeats the string 3 times
+let myText = "This is a log sentence that needs shortening.";
 
-//section 1.2
-let numericString = "123.45xyz";
+console.log(shorten(myText, 20)); //"this is a long sente..."
+console.log(shorten(myText, 10));
+console.log(shorten(myText, 30));
 
-console.log(Number(numericString)); //converts entire string to a number; returns NaN if any part is invalid
-console.log(parseInt(numericString)); //parses an integer(no decimals) until an invalid character(such as text)
-console.log(parseFloat(numericString)); //parses an integer as a float(with decimals) until an invalid character(such as text)
+//section 5 math.random
 
-//Array Methods
+//built in javascript method that gived you a random number between 0(inclusive) and 1(exclusive) 0.000000000000000000-0.0000000000000
 
-const colors = ["Red", "Green", "Blue"];
-console.log(colors.indexOf("Green"));
-console.log(colors.length);
-colors.push("Yellow");
-console.log(colors); // push adds to the end of an array
+// console.log(Math.random());
 
-const lastColor = colors.pop();
-console.log(lastColor); // removes the last element frmo the array, can be stored in a new variable
+// //0-9
+//0.00000-0.9999999999
+console.log(Math.floor(Math.random() * 10)); //math.floor makes a whole number. * 10 makes it a number between 0 and 10
 
-const firstColor = colors.shift();
-console.log(firstColor); //shift removes an element from the beginning of the array
+//1-10
+console.log(Math.floor(Math.random() * 10) + 1); // makes sure you dont get 0 and that you can get 10. 0 and 9 is the normal outcome, now we have 1- 10
 
-colors.unshift("purple"); //unshift places an element at the beginning of the array
+//console.log(Math.ceil(Math.random() * 10)); //rounds up instead of down,basically does the same but not bug free.
 
-console.log(colors);
+const pokemon = [
+  "pikachu",
+  "diglett",
+  "electrode",
+  "machop",
+  "magikarp",
+  "mew",
+  "blastoise",
+  "vaporeon",
+  "psyduck",
+  "meowth",
+];
+//we can use math.random to create a random index. If we multiply the math.random by pokemon.lwngth then we will be able to add or remove from the array without causing bugs
+const randomIndex = Math.floor(Math.random() * pokemon.length);
+console.log(pokemon[randomIndex]);
 
-console.log(colors.join("-")); //turns an array into a string, adds the text inside the "" between each element.
+//secyion 6 remove the middle element from an array (function methods, math.floor)
+const myArray = ["A", "B", "C", "D", "E", "F", "G", "H"];
 
-console.log(colors.includes("Green")); //loops over the array and checks each element to see if it matches the text in the brackets
+function removeMiddle(array) {
+  const mid = Math.floor(array.length / 2);
+  return array.toSpliced(mid, 1);
+}
+console.log(removeMiddle(myArray));
 
-console.log(colors);
+// 7 rock paper scissors function, switch case, mathrandom
 
-//const newColors = colors.splice(1, 2, "Orange", "Pink");
-//splice returns the deleted elements in the array, alters the original
+// function rockPaperScissors(player1, player2) {
+//   switch (player1 + player2) {
+//     case "rock" + "rock":
+//     case "paper" + "paper":
+//     case "scissors" + "scissors":
+//       return "it's a draw";
 
-//console.log(newColors); //find index 1, delete that 1(if 2, the nexrt one as well) and replace with Orange and pink
+//     case "rock" + "scissors":
+//     case "scissors" + "paper":
+//     case "paper" + "rock":
+//       return "player 1 wins";
 
-const newColors2 = colors.toSpliced(1, 2, "Orange", "Pink");
+//     case "rock" + "paper":
+//     case "scissors" + "rock":
+//     case "paper" + "scissors":
+//       return "player 2 wins";
 
-//toSliced returns the array with the chnges and doesnt altter the originals
-console.log(newColors2);
-console.log(colors);
+//     default:
+//       return "Stop trying to hack the game, muppet!";
+//   }
+// }
 
-let unsortedArray = [3, 1, 4, 1, 5, 9];
-unsortedArray.sort(); //sorts the original array
-console.log(unsortedArray);
+// console.log(rockPaperScissors("scissors", "rock"));
 
-let sortedArray = unsortedArray.toSorted(); //returns a copy of the original, sorted. does not affect the original array.
-console.log(sortedArray);
-console.log(sortedArray[0]);
-console.log(sortedArray.at(0));
-console.log(sortedArray.at(-2));
+function rockPaperScissors(player1, AI) {
+  switch (player1 + AI) {
+    case "rock" + "rock":
+    case "paper" + "paper":
+    case "scissors" + "scissors":
+      return "it's a draw";
 
-console.log(sortedArray.reverse()); //alters the original
-const reversedArray = sortedArray.toReversed(); //makes a copy of the original
-console.log(reversedArray);
+    case "rock" + "scissors":
+    case "scissors" + "paper":
+    case "paper" + "rock":
+      return "player 1 wins";
 
-const myNum = 3.34573459;
-console.log(myNum.toFixed(2)); //returns a string representing myNumber rounded to 2 decimal
-console.log(myNum.toString()); //converts myNum into a string
-console.log(myNum.toExponential()); //returns a string with myNum in exponential notation
+    case "rock" + "paper":
+    case "scissors" + "rock":
+    case "paper" + "scissors":
+      return "AI wins";
 
-//section 4 chaining methods together
+    default:
+      return "Stop trying to hack the game, muppet!";
+  }
+}
 
-//Example 1: Chaining string methods
+const possibleAnswers = ["rock", "paper", "scissors"];
+const aiAnswer = possibleAnswers[Math.floor(Math.random() * 3)];
+console.log("The AI answered:", aiAnswer);
 
-const rawString = "  JavaScript is fun!  ";
-
-const processedString = rawString
-  .trim()
-  .replace("fun", "awesome")
-  .toUpperCase();
-
-console.log(processedString);
-
-//ex 2 chaining array methods
-
-const words = ["Hello", "World"];
-const messageFromArray = words.join(" ").toLocaleUpperCase();
-
-console.log(messageFromArray);
-
-//ex 3
-const chainedNumber = myNum.toFixed(2).toString().repeat(2);
-console.log(chainedNumber);
+console.log(rockPaperScissors("scissors", aiAnswer));
