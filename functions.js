@@ -85,7 +85,7 @@ const greeter = (name, time) => {
 
 console.log(greeter("Joe", "morning"));
 
-console.log(greeter("Anders", "eventing"));
+console.log(greeter("Anders", "evening"));
 
 console.log(greeter("Mia", "afternoon"));
 
