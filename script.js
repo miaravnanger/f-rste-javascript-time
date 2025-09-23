@@ -1,178 +1,189 @@
-// 7 javascript loops
-//a loop is a way to repeat code without writing it multiple times
+//8: Objects
+//1 whats an object?
+//an object stores related data using key-value pairs
 
-//section1 why we use loops
+const person = {
+  name: "Alice",
+  age: 28,
+  job: "Designer",
+};
+console.log(person); //logs the entire object
+console.log(person.name); //accessing value with dot notation
+console.log(person["age"]); //access with bracket notation
 
-//without a loop
+//dot vs bracket: use dot when you know the key name code time: person.name. Use brackets when the ey is dynamic or not a valid identifier: person[Key]
 
-const names = ["Joe", "Henry", "Jimbo", "Dexter"];
+//section 2, creating, modifying and deleting keys in objects
+//adding a new key
+person.country = "Norway";
+//just pretend it exist, and then it does
+console.log(person);
+//modifying an existing key
+person.job = "coder";
+//just reassigning it
+//removing an existing key
+delete person.age;
+//dimply deleting the key
+console.log(person);
 
-//without a loop
+//3 looping through object using "for in" loop
 
-// console.log(`Hei ${names[0]}`);
-// console.log(`Hei ${names[1]}`);
-// console.log(`Hei ${names[2]}`);
-// console.log(`Hei ${names[3]}`);
+const user = {
+  name: "Joe",
+  age: 37,
+  location: "Stavanger",
+  hobby: "gaming",
+  address: "homeless",
+};
+console.log(user["name"]);
+for (let key in user) {
+  console.log(user.key); //returns undefined so we use bracket notation instead
 
-//DRY- dont repeat yourself
-
-//For loop
-//Where does the loop start - Where/when does the loop end - How much does the loop go up by each time.
-//i = index
-// index starts at 0, goes trough the whole length before it enda, and increases by 1 each time
-for (let i = 0; i < names.length; i++) {
-  console.log(`Hei ${names[i]}`);
+  console.log(key); //logs the keys
+  user[key] += "."; //modifies the value and adds a full stop to the end of each
+  console.log(user[key]); //loops through values using bracket notation
 }
 
-for (let i = 1; i <= 5; i++) {
-  console.log(`Counting ${i}`);
-}
+//4 nested objects and arrays
 
-//section 3 combining loops with functions and methods
+const userData = {
+  firstName: "Olav",
+  lastName: "Hansen",
+  age: 31,
+  isMale: true,
+  hobbies: ["Golf", "Hiking", "Cinema"],
+  address: {
+    streetName: "Solskinnsgaten",
+    streetNumber: 38,
+    postCode: 4050,
+  },
+  fullName: function () {
+    return `${this.firstName} ${this.lastName}`;
+  }, //this refers to the object, so the objects firstName and lastName
+};
+console.log(userData.fullName()); //created a method/built in function
 
-//Creating a function with a loop to greet names in an array. Also cleaning up the writing
-const people = ["alice", " BOB ", "charlie", "dEbBy"];
-//create array "cleanNames", create the loop, create "name" and add all the elements from the array into it. Then push "name" which now contains all the elements, into the array cleanNames. Here you can trim and edit the elements.then outside of the for loop, return names
-function greetEveryone(nameArray) {
-  const cleanNames = [];
-  for (let i = 0; i < nameArray.length; i++) {
-    const name = nameArray[i];
-    cleanNames.push(
-      name.trim().charAt(0).toUpperCase() + name.trim().slice(1).toLowerCase()
-    );
-  }
-  //trimming away whitespace, selecting character starting at 0 and making it capital. + again trimming the whitespace, slicing away the first character that we just capitalised, and making the rest lowercase.
-  return cleanNames;
-}
+userData.hobbies.push("Fishing"); //adding a new value(fishing) to the existing array(hobbies)
+console.log(userData.hobbies); //checking to see that push worked
+console.log(userData.address.streetNumber); //targeting streetnumber
+console.log(userData.hobbies[2]); //targeting cinema (hobbies array index 2)
 
-console.log(greetEveryone(people));
+//5, arrays of objects
 
-let words = ["Loops", "are", "really", "useful"];
-
-//creating a function with a loop to combine elements in an array to a string
-
-// function makeSentence(wordsArray) {
-// 	let sentence = ""
-
-// 	for (let i = 0; i < wordsArray.length; i++) {
-// 		sentence += wordsArray[i];
-// 		if (i < wordsArray.length -1) {
-// 			sentence += " "
-// 		}
-// 	}
-// return sentence + "."
-// 	}
-// console.log(makeSentence(["Loops", "are", "really", "useful"]))
-
-//some methods have inbuilt loop!
-function makeSentence(wordsArray) {
-  return wordsArray.join(" ") + ".";
-}
-console.log(makeSentence(words));
-
-//section 4 the for...of loop
-//easier way if youre just looping from start to end and increasing one. which is the standard. If you want to skip every other element or do some kind of wierd shit, you have to use for loop.
-const colors = ["red", "green", "blue"];
-//instead of saying color[i]
-for (let color of colors) {
-  console.log(color);
-}
-let cleanedNames = [];
-for (let person of people) {
-  cleanedNames.push(
-    person.trim().charAt(0).toUpperCase() + person.trim().slice(1).toLowerCase()
-  );
-  console.log(person);
-}
-console.log(cleanedNames);
-
-//section 5 the while loop /THE DANGEROUS INFINITE LOOP
-
-let count = 1;
-while (count <= 5) {
-  console.log(`Our While count is at ${count}`);
-  count++;
-}
-
-//Guessing game with a while loop.
-const secretNum = Math.floor(Math.random() * 10);
-let guess = 0;
-console.log(secretNum);
-while (guess !== secretNum) {
-  guess++;
-  console.log(`Guessing: ${guess}`);
-
-  if (guess === secretNum) {
-    console.log(`Correct! The secret number was ${guess}`);
-  }
-}
-
-//section 6 creating array with loop
-
-function makeRandomArray(length, max) {
-  const result = [];
-  for (let i = 0; i < length; i++) {
-    const rand = Math.floor(Math.random() * max) + 1;
-    result.push(rand);
-  }
-
-  return result;
-}
-// shorter way for (let i = 0; i < length; i++) {
-//  (result.push(Math.floor(Math.random() * max) + 1;)
-
-console.log(makeRandomArray(10, 50));
-const randomNumbers = makeRandomArray(40, 1000);
-console.log(randomNumbers);
-
-//section 7 finding the biggest number
-
-function findMax(numbers) {
-  let highestNum = 0;
-
-  for (let num of numbers) {
-    if (num > highestNum) {
-      highestNum = num;
-    }
-  }
-  return `The biggest number is: ${highestNum}`;
-}
-console.log(findMax(randomNumbers));
-
-// section 8 using break and continue
-const moreNames = [
-  "Tom",
-  "Eric",
-  "Jessica",
-  "Scott",
-  "Anna",
-  "Carl",
-  "Elisabeth",
-  "Benny",
-	"Oliver",
-  "Andy",
-	"Patrick",
+const products = [
+  { productName: "Shirt", productId: 746352, stock: 32 },
+  { productName: "Pants", productId: 745652, stock: 5 },
+  { productName: "Socks", productId: 749345, stock: 22 },
 ];
-//skip Andy
-for (let name of moreNames) {
-  if (name === "Andy" || name === "Scott") continue;
 
-  // console.log(name);
+console.log(products);
+
+for (let product of products) {
+  console.log(
+    `The product: ${product.productName}, has the productID of: ${product.productId} and has ${product.stock} in stock`
+  );
 }
-//stop when you reach benny
-for (let name of moreNames) {
-  if (name === "Benny") break;
-  console.log(name);
+
+//section 6: descriptive sentences with objects
+
+const people = [
+  {
+    name: "Thomas",
+    isMale: true,
+    age: 23,
+    hobbies: ["cycling", "football", "pool"],
+  },
+  {
+    name: "Susan",
+    isMale: false,
+    age: 26,
+    hobbies: ["jogging", "travelling", "dancing"],
+  },
+  {
+    name: "Monica",
+    isMale: false,
+    age: 21,
+    hobbies: ["skateboarding", "guitar", "concerts"],
+  },
+  {
+    name: "Avery",
+    isMale: true,
+    age: 28,
+    hobbies: ["coding", "games", "memes"],
+  },
+  {
+    name: "Phillip",
+    isMale: true,
+    age: 24,
+    hobbies: ["boxing", "wrestling", "mma"],
+  },
+  {
+    name: "Otto",
+    isMale: true,
+    age: 36,
+    hobbies: ["movies", "cinema", "music"],
+  },
+  {
+    name: "Annabelle",
+    isMale: false,
+    age: 30,
+    hobbies: ["makeup", "fashion", "shopping"],
+  },
+  {
+    name: "Cathy",
+    isMale: false,
+    age: 18,
+    hobbies: ["design", "drawing", "css"],
+  },
+];
+
+// console.log(people);
+//Cathy is 18 years old
+//cathy is 18 years ols and enjoys css
+//cathy is 18 years old and enjoys random hobby
+
+for (let person of people) {
+  const hobbyLength = Math.floor(Math.random() * person.hobbies.length);
+
+  console.log(
+    `${person.name} is ${person.isMale ? "male" : "female"} ${
+      person.age
+    } years old and enjoys ${person.hobbies[hobbyLength]}`
+  );
 }
-// for (let i = 0; i < moreNames.length; i++) {
-//   if (moreNames[i] === "Benny") break;
-//   console.log(moreNames[i]);
-// }
 
+//section 7: workign with object data
 
-//summary
-//for - best when using an index or counting
-//for...of- great for looping through entire arrays
-//while - useful when you dont know how many times to repeat
-//break -stops the loop early
-//continue - skips to the next loop cycle
+//calculate total age of all people
+let totalAge = 0;
+//make a global variable with total age
+for (let person of people) {
+  totalAge += person.age; //create a loop where you increase the totalAge variable with the age each time the loop runs
+}
+console.log(`total compined age: ${totalAge}`);
+
+//section 8 combining hobbies with spread syntax
+//put all hobbies into one array
+for (let person of people) {
+  console.log(person.hobbies);
+  console.log(...person.hobbies); //logs the content of the array instead of the actual array
+}
+
+const allHobbies = [];
+for (let person of people) {
+  allHobbies.push(...person.hobbies);
+}
+
+//se if you can make sure there are just one of each.
+//if/else?
+console.log(allHobbies);
+
+//section 9: adding new properties to objects in an array
+
+// add a new key called title
+//if person.isMale = true  title = "Mr."
+//if person.isMale = true  title = "Ms."
+for (let person of people) {
+  person.title = person.isMale ? "Mr." : "Ms.";
+}
+console.log(people);
