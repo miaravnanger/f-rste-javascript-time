@@ -60,8 +60,13 @@ const userData = {
   fullName: function () {
     return `${this.firstName} ${this.lastName}`;
   }, //this refers to the object, so the objects firstName and lastName
+	addMiddleName: function (middle) {
+		this.middleName = middle;
+	},
 };
 console.log(userData.fullName()); //created a method/built in function
+userData.addMiddleName("Trond");
+console.log(userData.middleName);
 
 userData.hobbies.push("Fishing"); //adding a new value(fishing) to the existing array(hobbies)
 console.log(userData.hobbies); //checking to see that push worked
