@@ -1,194 +1,195 @@
-//8: Objects
-//1 whats an object?
-//an object stores related data using key-value pairs
+//lesson 9: recap- loops & objects
 
-const person = {
-  name: "Alice",
-  age: 28,
-  job: "Designer",
-};
-console.log(person); //logs the entire object
-console.log(person.name); //accessing value with dot notation
-console.log(person["age"]); //access with bracket notation
+//section 1 looping through arrays
 
-//dot vs bracket: use dot when you know the key name code time: person.name. Use brackets when the ey is dynamic or not a valid identifier: person[Key]
+const fruitNames = ["Apple", "Banana", "Mango", "Grapes", "Pear"];
 
-//section 2, creating, modifying and deleting keys in objects
-//adding a new key
-person.country = "Norway";
-//just pretend it exist, and then it does
-console.log(person);
-//modifying an existing key
-person.job = "coder";
-//just reassigning it
-//removing an existing key
-delete person.age;
-//dimply deleting the key
-console.log(person);
+// "for" looop allows the possibility to change starting index, when we end ans how we increment
 
-//3 looping through object using "for in" loop
-
-const user = {
-  name: "Joe",
-  age: 37,
-  location: "Stavanger",
-  hobby: "gaming",
-  address: "homeless",
-};
-console.log(user["name"]);
-for (let key in user) {
-  console.log(user.key); //returns undefined so we use bracket notation instead
-
-  console.log(key); //logs the keys
-  user[key] += "."; //modifies the value and adds a full stop to the end of each
-  console.log(user[key]); //loops through values using bracket notation
+for (let i = 0; i < fruitNames.length; i++) {
+  console.log(fruitNames[i]);
+  // console log the name of the array plus [i] to get the whole array
 }
 
-//4 nested objects and arrays
+// for.. of loop works like a standard for loop, will loop through each element in the array. no acces to 1
+for (let fruit of fruitNames) {
+  console.log(fruit);
+}
+//section2 looping with conditions
+const numbers = [12, 5, 8, 13, 44, 300, 22];
+//loop through the array
+//if the number is <10 continue
+//if the number is > 100 break
+//otherwise console log the number
 
-const userData = {
-  firstName: "Olav",
-  lastName: "Hansen",
-  age: 31,
-  isMale: true,
-  hobbies: ["Golf", "Hiking", "Cinema"],
-  address: {
-    streetName: "Solskinnsgaten",
-    streetNumber: 38,
-    postCode: 4050,
-  },
-  fullName: function () {
-    return `${this.firstName} ${this.lastName}`;
-  }, //this refers to the object, so the objects firstName and lastName
-	addMiddleName: function (middle) {
-		this.middleName = middle;
-	},
-};
-console.log(userData.fullName()); //created a method/built in function
-userData.addMiddleName("Trond");
-console.log(userData.middleName);
-
-userData.hobbies.push("Fishing"); //adding a new value(fishing) to the existing array(hobbies)
-console.log(userData.hobbies); //checking to see that push worked
-console.log(userData.address.streetNumber); //targeting streetnumber
-console.log(userData.hobbies[2]); //targeting cinema (hobbies array index 2)
-
-//5, arrays of objects
-
-const products = [
-  { productName: "Shirt", productId: 746352, stock: 32 },
-  { productName: "Pants", productId: 745652, stock: 5 },
-  { productName: "Socks", productId: 749345, stock: 22 },
-];
-
-console.log(products);
-
-for (let product of products) {
-  console.log(
-    `The product: ${product.productName}, has the productID of: ${product.productId} and has ${product.stock} in stock`
-  );
+for (let number of numbers) {
+  if (number < 10) continue;
+  if (number > 100) break;
+  console.log(number);
 }
 
-//section 6: descriptive sentences with objects
+//section 3 the while loop (guessing game)
 
-const people = [
+//generate a random number between 1-10
+
+const randomNumber = Math.floor(Math.random() * 10) + 1;
+
+let guess = 1;
+
+// use a while loop to increment a guess variable. When the guess and the randomNumber match, end the loop and console log that we guess correctly.
+
+while (randomNumber !== guess) {
+  guess++;
+
+  console.log(`Guessing: ${guess}`);
+
+  if (guess === randomNumber) {
+    console.log(`Correct! The number was: ${guess}`);
+  }
+}
+
+//section4 basic object review
+
+const book = {
+  title: "The Hobbit",
+  author: "J.R.R. Tolkien",
+  pages: 310,
+};
+
+//Add year published
+book.published = 1937;
+
+//Change pages
+book.pages = 320;
+
+//remove author
+delete book.author;
+
+//target title using dot notation
+console.log(book);
+//Target pages using bracket notation
+
+//section 5 looping through an object and using dynamic keys
+for (let key in book) {
+  console.log(key); //console logging the key
+  console.log(book[key]); //console looking the key and value
+}
+
+//section 6 array of objects - fruit data
+const fruits = [
   {
-    name: "Thomas",
-    isMale: true,
-    age: 23,
-    hobbies: ["cycling", "football", "pool"],
+    name: "Apple",
+    color: "Red",
+    calories: 52,
+    pricePerKg: 3.5,
+    countryOfOrigin: "USA",
   },
   {
-    name: "Susan",
-    isMale: false,
-    age: 26,
-    hobbies: ["jogging", "travelling", "dancing"],
+    name: "Banana",
+    color: "Yellow",
+    calories: 89,
+    pricePerKg: 1.2,
+    countryOfOrigin: "Ecuador",
   },
   {
-    name: "Monica",
-    isMale: false,
-    age: 21,
-    hobbies: ["skateboarding", "guitar", "concerts"],
+    name: "Orange",
+    color: "Orange",
+    calories: 47,
+    pricePerKg: 2.8,
+    countryOfOrigin: "Spain",
   },
   {
-    name: "Avery",
-    isMale: true,
-    age: 28,
-    hobbies: ["coding", "games", "memes"],
+    name: "Strawberry",
+    color: "Red",
+    calories: 32,
+    pricePerKg: 6.0,
+    countryOfOrigin: "Mexico",
   },
   {
-    name: "Phillip",
-    isMale: true,
-    age: 24,
-    hobbies: ["boxing", "wrestling", "mma"],
+    name: "Mango",
+    color: "Orange",
+    calories: 60,
+    pricePerKg: 4.0,
+    countryOfOrigin: "India",
   },
   {
-    name: "Otto",
-    isMale: true,
-    age: 36,
-    hobbies: ["movies", "cinema", "music"],
+    name: "Grapes",
+    color: "Green",
+    calories: 69,
+    pricePerKg: 0.5,
+    countryOfOrigin: "Italy",
   },
   {
-    name: "Annabelle",
-    isMale: false,
-    age: 30,
-    hobbies: ["makeup", "fashion", "shopping"],
-  },
-  {
-    name: "Cathy",
-    isMale: false,
-    age: 18,
-    hobbies: ["design", "drawing", "css"],
+    name: "Pineapple",
+    color: "Brown",
+    calories: 50,
+    pricePerKg: 3.0,
+    countryOfOrigin: "Costa Rica",
   },
 ];
 
-// console.log(people);
-//Cathy is 18 years old
-//cathy is 18 years ols and enjoys css
-//cathy is 18 years old and enjoys random hobby
-
-for (let person of people) {
-  const hobbyLength = Math.floor(Math.random() * person.hobbies.length);
-
+//describe each fruit.
+//console log: Apple is a Red fruit from USA
+//console log: Banana is a Yellow fruit from Ecuador
+for (let fruit of fruits) {
   console.log(
-    `${person.name} is ${person.isMale ? "male" : "female"} ${
-      person.age
-    } years old and enjoys ${person.hobbies[hobbyLength]}`
+    `${fruit.name} is a ${fruit.color.toLowerCase()} from ${
+      fruit.countryOfOrigin
+    }`
   );
 }
 
-//section 7: workign with object data
+//task 2
+let lowestPrice = Infinity;
+let fruitName = "";
 
-//calculate total age of all people
-let totalAge = 0;
-//make a global variable with total age
-for (let person of people) {
-  totalAge += person.age; //create a loop where you increase the totalAge variable with the age each time the loop runs
+for (let fruit of fruits) {
+  if (fruit.pricePerKg < lowestPrice) {
+    lowestPrice = fruit.pricePerKg;
+    fruitName = fruit.name;
+  }
 }
-console.log(`total compined age: ${totalAge}`);
+console.log(
+  `The cheapest fruit is ${fruitName}, costing ${lowestPrice} kr. per kg.`
+);
 
-//section 8 combining hobbies with spread syntax
-//put all hobbies into one array
-for (let person of people) {
-  console.log(person.hobbies);
-  console.log(...person.hobbies); //logs the content of the array instead of the actual array
+//section 8 adding and removing properties in a loop
+
+//add a "good" propertry to every fruit
+
+for (let fruit of fruits) {
+  fruit.good = true;
+}
+for (let fruit of fruits) {
+  delete fruit.good;
+  console.log(fruit);
 }
 
-const allHobbies = [];
-for (let person of people) {
-  allHobbies.push(...person.hobbies);
+//section 9: Object in Function 
+function describeFruit(fruit) {
+	return `${fruit.name} contains ${fruits.calories} calories per 100g.`;
+
 }
 
-//se if you can make sure there are just one of each.
-//if/else?
-console.log(allHobbies);
+console.log(describeFruit(fruits[0]));
+console.log(describeFruit(fruits[5]));
 
-//section 9: adding new properties to objects in an array
+//section 10 summary
+//use loops to repeat tasks or go trough arrays and objects
+// for.. of is great for typical arrays
+// for..in is used for object kets
+// obejcts store data in key-vale pairs
+// arrays can contain multiple object (object arrays)
+// loops can ombine with logic, conditions and functions
+// you can add, modify, or dele properties dynamically
 
-// add a new key called title
-//if person.isMale = true  title = "Mr."
-//if person.isMale = true  title = "Ms."
-for (let person of people) {
-  person.title = person.isMale ? "Mr." : "Ms.";
-}
-console.log(people);
+
+//JSON
+
+const rawJsonData = [
+	// data that you got from api?
+	// theres a method that you can use to parse the data to remove unwanted ""
+]
+
+// const parsedData = JSON.parse(rawJsonData)
+// console.log(parsedData)
