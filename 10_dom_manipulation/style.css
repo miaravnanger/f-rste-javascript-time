@@ -1,0 +1,18 @@
+h1 {
+text-transform: uppercase;
+}
+
+.fancy-paragraph {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: blueviolet
+}
+
+.container {
+    height: 100px;
+    width: 100px;
+    background-color: rgb(1, 202, 68);
+}
+
+.movie {
+    text-decoration: underline;
+}

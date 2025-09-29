@@ -79,8 +79,7 @@ for (let color of colors) {
 }
 let cleanedNames = [];
 for (let person of people) {
-  cleanedNames.push(
-    person.trim().charAt(0).toUpperCase() + person.trim().slice(1).toLowerCase()
+  cleanedNames.push().person.trim().charAt(0).toUpperCase() + person.trim().slice(1).toLowerCase()
   );
   console.log(person);
 }
@@ -149,26 +148,25 @@ const moreNames = [
   "Carl",
   "Elisabeth",
   "Benny",
-	"Oliver",
+  "Oliver",
   "Andy",
-	"Patrick",
+  "Patrick",
 ];
 //skip Andy
 for (let name of moreNames) {
   if (name === "Andy" || name === "Scott") continue;
 
-  // console.log(name);
+  console.log(name);
 }
-//stop when you reach benny
+// stop when you reach benny
 for (let name of moreNames) {
   if (name === "Benny") break;
   console.log(name);
 }
-// for (let i = 0; i < moreNames.length; i++) {
-//   if (moreNames[i] === "Benny") break;
-//   console.log(moreNames[i]);
-// }
-
+for (let i = 0; i < moreNames.length; i++) {
+  if (moreNames[i] === "Benny") break;
+  console.log(moreNames[i]);
+}
 
 //summary
 //for - best when using an index or counting
