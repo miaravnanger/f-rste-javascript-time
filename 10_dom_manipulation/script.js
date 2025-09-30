@@ -153,7 +153,7 @@ for (let movie of favoriteMovies) {
 }
 
 
-//summary
+//summary DOM(document object model)
 //The DOM is how js connects to HTML
 //use querySelector, getElementbyId etc to select elements
 //use .texContent, .innerHTML, and .style to change content and appearance
@@ -162,3 +162,4 @@ for (let movie of favoriteMovies) {
 //DOM has a parent/child/sibling structure you can navigate
 //classList helps manage CSS classes
 //You can attach event listeners like click or mouseover
+//prepend post it to the top

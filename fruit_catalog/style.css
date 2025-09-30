@@ -1,0 +1,58 @@
+body {
+  display: flex;
+  flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.fruit-section {
+  display: flex;
+	gap: 10px;
+	flex-wrap: wrap;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+	border: 2px solid black;
+	padding: 5px;
+	width: 150px;
+	height: 550px;
+	gap: 10px;
+}
+
+.fruit-title {
+
+}
+
+.fruit-img{
+
+}
+
+.fruit-info{
+	
+}
+
+.fruit-calories{
+	
+}
+
+.fruit-price{
+	
+}
+
+.strikethrough {
+	text-decoration: line-through;
+	color: rgb(122, 120, 120);
+}
+
+.sale {
+	font-size: large;
+	color:red;
+	text-decoration: underline;
+	font-weight: bold;
+}
+
+.toggleVisibility {
+	display: none;
+}
